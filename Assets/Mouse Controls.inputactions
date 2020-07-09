@@ -1,0 +1,52 @@
+{
+    "name": "Mouse Controls",
+    "maps": [
+        {
+            "name": "Mouse",
+            "id": "7b74f313-a104-43d0-bfb5-2677e206ecda",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "3605f6c5-8a72-462f-8b94-fdfadcbfeca0",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "PickUp",
+                    "type": "Button",
+                    "id": "0d572773-4819-4791-919a-d49ecc4ee518",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "bfcb39ad-6311-4eab-a555-d78148ee5c57",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b92cc5f4-c2db-4951-ad44-a70c0e6fb859",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PickUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
