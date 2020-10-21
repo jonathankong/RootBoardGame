@@ -72,8 +72,8 @@ public class DragAndDrop : MonoBehaviour
         }
         else if (target != null)
         {
-            target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y - 1, target.transform.position.z);
-            target = null;
+            //target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y - 1, target.transform.position.z);
+            //target = null;
         }
     }
 
