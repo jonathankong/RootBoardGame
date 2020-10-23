@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class DragAndDrop : MonoBehaviour
 {
-    GameObject target;
+    GameObject thisObject;
     Vector3 screenPosition;
     Vector3 offset;
     UnityEngine.InputSystem.Mouse mouse;
@@ -48,6 +48,7 @@ public class DragAndDrop : MonoBehaviour
     private void Awake()
     {
         mouse = UnityEngine.InputSystem.Mouse.current;
+        thisObject = this.gameObject;
     }
 
     private void Update()
@@ -58,7 +59,7 @@ public class DragAndDrop : MonoBehaviour
             //screenPosition = Camera.main.WorldToScreenPoint(target.transform.position);
             var mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(mouse.position.x.ReadValue(), mouse.position.y.ReadValue(), Camera.main.gameObject.transform.position.y));
             mousePosition.y += 1;
-            target.transform.position = mousePosition;
+            thisObject.transform.position = mousePosition;
             
             //offset = target.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(mouse.position.x.ReadValue(), mouse.position.y.ReadValue(), Camera.main.gameObject.transform.position.y));
             ////tracking mouse position.
@@ -70,20 +71,15 @@ public class DragAndDrop : MonoBehaviour
             ////It will update target gameobject's current postion.
             //target.transform.position = currentPosition;
         }
-        else if (target != null)
-        {
-            //target.transform.position = new Vector3(target.transform.position.x, target.transform.position.y - 1, target.transform.position.z);
-            //target = null;
-        }
     }
 
-    GameObject ReturnClickedObject(out RaycastHit hit)
+    GameObject ReturnClickedObject()
     {
         GameObject targetObject = null;
         Ray ray = Camera.main.ScreenPointToRay(new Vector3 (mouse.position.x.ReadValue(), mouse.position.y.ReadValue(), 0));
-        if (Physics.Raycast(ray.origin, ray.direction * 10, out hit))
+        if (Physics.Raycast(ray.origin, ray.direction * 10, out RaycastHit hit))
         {
-            targetObject = hit.collider.gameObject;
+            return hit.collider.gameObject;
         }
         return targetObject;
     }
@@ -94,9 +90,7 @@ public class DragAndDrop : MonoBehaviour
         Debug.Log(context.performed);
         if (context.performed)
         {
-            RaycastHit hitInfo;
-            target = ReturnClickedObject(out hitInfo);
-            if (target != null)
+            if (ReturnClickedObject() == thisObject)
             {
                 isPickedUp = true;
             }
